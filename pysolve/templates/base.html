@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pySolve">
+    <meta name="author" content="Luiz Paulo Rabachini">
+    <link rel="shortcut icon" href="{{'pysolve:static/img/icon.png'|static_url}}">
+
+    <title>
+      {% block page_title %}{% endblock %}
+      - pySolve
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{'pysolve:static/css/bootstrap.min.css'|static_url}}" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="{{'pysolve:static/css/theme.min.css'|static_url}}" rel="stylesheet">
+    {% block page_css %}
+    {% endblock %}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{{'pysolve:static/js/html5shiv.js'|static_url}}"></script>
+      <script src="{{'pysolve:static/js/respond.min.js'|static_url}}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="header text-center">
+      <h1>pySolve</h1>
+      <br>
+      <h2>
+        {% if request.url != request.route_url('home') %}
+          <a class="btn-back" href="{{request.route_url('home')}}">
+            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+          </a>
+        {% endif %}
+
+        {% block page_subtitle %}
+        {% endblock %}
+      </h2>
+      <br><br>
+    </div>
+
+    <div class="container">
+      {% block page_content %}
+      {% endblock %}
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{'pysolve:static/js/jquery.min.js'|static_url}}"></script>
+    <script src="{{'pysolve:static/js/bootstrap.min.js'|static_url}}"></script>
+
+    <!-- Custom scripts -->
+    {% block page_js %}
+    {% endblock %}
+
+  </body>
+</html>

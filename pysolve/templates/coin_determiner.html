@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+  Coin Determiner
+{% endblock %}
+
+{% block page_subtitle %}
+
+  Coin Determiner
+  
+{% endblock %}
+
+{% block page_css %}
+{% endblock %}
+
+{% block page_content %}
+
+  <div class="row row-input">
+    <div class="col-sm-12">
+      <form id="coins-from" method="post" action="" accept-charset="utf-8" enctype="multipart/form-data" class="text-center">
+
+        <ul class="nav nav-pills nav-center" role="tablist">
+          <li class="active"><a href="#value-pane" role="tab" data-toggle="tab">Input Value</a></li>
+          <li class="tab-label"><span>or</span></li>
+          <li>
+            <a href="#file-pane" role="tab" data-toggle="tab">
+              Upload File
+              <span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#modal-file-info"></span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="value-pane">
+            <div class="form-group">
+              <input type="text" class="form-control" id="input-value" name="input-value" placeholder="Insert an integer value to conversion">
+            </div>
+          </div>
+          <div class="tab-pane" id="file-pane">
+            <div class="form-group">
+              <input type="text" class="form-control" id="selected-value-file" name="selected-value-file" placeholder="Click to select a file to conversion" readonly>
+              <input type="file" id="input-value-file" name="input-value-file" style="display:none;">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-default btn-solve">Convert!</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-file-info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h2>File to Conversion</h2><br>
+          <p>The file must be plain text in which each line contain an integer number for conversion.<br>
+            For example:<br><br>
+            6<br>
+            16<br>
+            23
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if message %}
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          {{message}}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if result %}
+    <div class="row row-result">
+      <div class="col-sm-12">
+        <h2>Result of Conversion</b></h2><br><br>
+        <table id="coins-result" class="table">
+          <thead>
+            <tr>
+              <th class="col-sm-3">Least Number of Coins</th>
+              <th class="col-sm-3">Input Value</th>
+              <th class="col-sm-6">Combination</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in result %}
+              {% if not entry %}
+                <tr>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td>{{entry[1]}}</td>
+                  <td>{{entry[0]}}</td>
+                  <td>
+                    {% for coin in entry[2] %}
+                      <img class="img-coin" src="/static/img/{{coin}}.png">
+                    {% endfor %}
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>        
+      </div>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
+{% block page_js %}
+
+  <script src="{{'pysolve:static/js/coin.min.js'|static_url}}"></script>
+
+{% endblock %}

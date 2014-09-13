@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+  Home
+{% endblock %}
+
+{% block page_subtitle %}
+  Select a problem to visit solution
+{% endblock %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <a href="{{request.route_url('coin_determiner')}}" class="btn btn-warning btn-lg">Coin Determiner</a>
+    </div>
+  </div>
+{% endblock %}
