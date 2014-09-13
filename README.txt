@@ -1,7 +1,7 @@
 pysolve
 =======
 
-A pyramid web application to solve mathematical problems.
+A [pyramid](http://docs.pylonsproject.org/en/latest/) web application to solve mathematical problems.
 
 Current solutions available:
 
